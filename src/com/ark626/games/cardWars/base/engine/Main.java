@@ -64,7 +64,7 @@ public class Main {
         //Draw
         game.render();
         Display.update();
-        Display.sync(60);
+        //Display.sync(60);
     }
     
     private static void gameLoop() {
@@ -96,7 +96,7 @@ public class Main {
             Display.setDisplayMode(new DisplayMode(800,600));
             Display.create();
             Keyboard.create();
-            Display.setVSyncEnabled(true);
+            //Display.setVSyncEnabled(true);
         }
         
         catch (LWJGLException ex){

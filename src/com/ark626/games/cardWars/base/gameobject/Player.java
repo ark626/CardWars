@@ -2,6 +2,7 @@ package com.ark626.games.cardWars.base.gameobject;
 
 import org.lwjgl.input.Keyboard;
 import com.ark626.games.cardWars.base.game.Game;
+import com.ark626.games.cardWars.base.game.Time;
 import com.ark626.games.cardWars.base.gameobject.item.Inventory;
 import com.ark626.games.cardWars.base.gameobject.item.Item;
 
@@ -46,8 +47,8 @@ public class Player extends StatObject{
             speedY = speedY*0.75f;
         }
         
-        x += speedX;
-        y += speedY;
+        x += speedX* Time.getDelta();
+        y += speedY* Time.getDelta();
                 
     }
     

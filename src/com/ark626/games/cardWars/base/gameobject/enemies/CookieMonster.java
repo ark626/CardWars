@@ -2,6 +2,7 @@ package com.ark626.games.cardWars.base.gameobject.enemies;
 
 import java.util.ArrayList;
 import com.ark626.games.cardWars.base.engine.Main;
+import com.ark626.games.cardWars.base.game.Time;
 import com.ark626.games.cardWars.base.game.Util;
 import com.ark626.games.cardWars.base.gameobject.GameObject;
 import com.ark626.games.cardWars.base.gameobject.GameObjectTypes;
@@ -35,7 +36,7 @@ public class CookieMonster extends Enemy{
         float speedX = (getTarget().getX())-x;
         float speedY = (getTarget().getY())-y;
         
-        float maxSpeed = getStats().getSpeed() * damping;
+        float maxSpeed = getStats().getSpeed() * damping*Time.getDelta();
         
         if(speedX > maxSpeed)
             speedX = maxSpeed;

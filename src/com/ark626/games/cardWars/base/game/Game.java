@@ -23,7 +23,7 @@ public class Game {
                 Display.getHeight()/2-Player.SIZE/2,this);
         objects.add(player);
         objects.add(new Cube(32, 32,this,player));
-        objects.add(new CookieMonster(100, 100, 10));
+        objects.add(new CookieMonster(100, 100, 1));
     }
     
     public void getInput() {
