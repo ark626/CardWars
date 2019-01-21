@@ -1,0 +1,17 @@
+main threw an exception:
+org.omg.CORBA.NO_IMPLEMENT:   vmcid: 0x0  minor code: 0  completed: No
+	at org.omg.CORBA.portable.InputStream.read(InputStream.java:265)
+	at java.io.InputStream.read(InputStream.java:170)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246)
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:286)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:345)
+	at java.io.FilterInputStream.read(FilterInputStream.java:133)
+	at java.io.PushbackInputStream.read(PushbackInputStream.java:186)
+	at java.io.FilterInputStream.read(FilterInputStream.java:107)
+	at javazoom.spi.mpeg.sampled.file.MpegAudioFileReader.getAudioFileFormat(MpegAudioFileReader.java:312)
+	at org.tritonus.share.sampled.file.TAudioFileReader.getAudioInputStream(TAudioFileReader.java:387)
+	at org.tritonus.share.sampled.file.TAudioFileReader.getAudioInputStream(TAudioFileReader.java:329)
+	at javazoom.spi.mpeg.sampled.file.MpegAudioFileReader.getAudioInputStream(MpegAudioFileReader.java:583)
+	at javax.sound.sampled.AudioSystem.getAudioInputStream(AudioSystem.java:1113)
+	at de.gurkenlabs.litiengine.sound.Sound.<init>(Sound.java:47)
+	at com.ark626.games.cardWars.Main.main(Main.java:205)
