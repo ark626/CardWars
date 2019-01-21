@@ -1,18 +1,26 @@
 package com.ark626.games.cardWars.base.gameobject.enemies;
 
+import com.ark626.games.cardWars.base.game.Delay;
 import com.ark626.games.cardWars.base.game.Util;
 import com.ark626.games.cardWars.base.gameobject.GameObject;
+import com.ark626.games.cardWars.base.gameobject.StatObject;
 import com.ark626.games.cardWars.base.gameobject.Stats;
 
-public class Enemy extends GameObject{
+public class Enemy extends StatObject{
     
-    protected Stats stats;
-    private GameObject target;
+    private StatObject target;
+    protected float damping = 0.5f;
+    private float attackRange;
+    private float sigthRange = 128f;
+    private Delay attackDelay;
     
     public Enemy(int level) {
        
-        stats = new Stats();
+        super(32,0,false);
         target = null;
+        attackDelay = new Delay(0);
+        attackRange = 48f;
+        attackDelay.end();
         
     }
     
@@ -23,17 +31,18 @@ public class Enemy extends GameObject{
         }
         else {
             Chase();
-            if(Util.LineSight(this, target)) {
+            if(Util.LineSight(this, target)&&(Util.dist(x, y, getTarget().getX(), getTarget().getY()))<= attackRange) {
+
                 Attack();
             }
         }
-        if(stats.getCurrentHealth()<=0) {
-            Die();
+        if(getStats().getCurrentHealth()<=0) {
+            Death();
         }
     }
     
     public void Attack() {
-        
+  
     }
     
     public void Idle() {
@@ -48,18 +57,61 @@ public class Enemy extends GameObject{
         
     }
     
-    public void Die() {
-        
+    public void Death() {
+        remove();
     }
     
-    public void setTarget(GameObject gameObject) {
+    public void setTarget(StatObject gameObject) {
         this.target = gameObject;
     }
 
+    
 
-    public GameObject getTarget() {
-        return target;
+    public float getDamping() {
+        return damping;
     }
 
+
+    public void setDamping(float damping) {
+        this.damping = damping;
+    }
+
+
+    public float getAttackRange() {
+        return attackRange;
+    }
+
+
+    public void setAttackRange(float attackRange) {
+        this.attackRange = attackRange;
+    }
+
+
+    public float getSigthRange() {
+        return sigthRange;
+    }
+
+
+    public void setSigthRange(float sigthRange) {
+        this.sigthRange = sigthRange;
+    }
+
+
+    public Delay getAttackDelay() {
+        return attackDelay;
+    }
+
+    public StatObject getTarget() {
+        return target;
+    }
+    
+    public void setAttackDelay(int time) {
+        attackDelay = new Delay(time);
+        attackDelay.end();
+    }
+
+    public void restartAttackDelay() {
+        attackDelay.start();
+    }
     
 }

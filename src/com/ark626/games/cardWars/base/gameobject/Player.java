@@ -5,19 +5,16 @@ import com.ark626.games.cardWars.base.game.Game;
 import com.ark626.games.cardWars.base.gameobject.item.Inventory;
 import com.ark626.games.cardWars.base.gameobject.item.Item;
 
-public class Player extends GameObject{
+public class Player extends StatObject{
     
     public static final float SIZE = 32;
-    Stats stats;
-    Inventory inventory;
     
     
     public Player(float x, float y, Game game) {
         
-        inventory = new Inventory(32);
+        super(32,0,true);
         init(x,y,0.1f, 1f, 0.25f, SIZE,SIZE,game,GameObjectTypes.Player,"res/png/test2.png");
-        this.stats = new Stats();
-        stats.init(0, true);
+        
         
     }
     
@@ -41,8 +38,8 @@ public class Player extends GameObject{
 
 
     private void move(int magX, int magY) {
-        float speedX = stats.getSpeed()* magX;
-        float speedY = stats.getSpeed()* magY;
+        float speedX = getStats().getSpeed()* magX;
+        float speedY = getStats().getSpeed()* magY;
         
         if((speedX >= 0.1 || speedX <=-0.1) && (speedY >= 0.1 || speedY <=-0.1)) {
             speedX = speedX*0.75f;

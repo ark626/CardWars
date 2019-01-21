@@ -8,6 +8,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import com.ark626.games.cardWars.base.game.Game;
+import com.ark626.games.cardWars.base.game.Time;
 import com.ark626.games.cardWars.base.gameobject.GameObject;
 import static org.lwjgl.opengl.GL11.*;
 
@@ -37,7 +38,9 @@ public class Main {
     
     private static void initGame() {
      
+        
         game = new Game();
+        
     }
     
     private static void cleanUp() {
@@ -65,7 +68,11 @@ public class Main {
     }
     
     private static void gameLoop() {
+        
+        Time.init();
         while(!Display.isCloseRequested()) {
+            
+            Time.update();
             getInput();
             update();
             render();

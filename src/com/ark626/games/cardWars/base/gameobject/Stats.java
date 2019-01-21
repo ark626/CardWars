@@ -62,5 +62,8 @@ public class Stats {
         return level * 4;
     }
 
+    public void damage(int amount) {
+        this.health-=amount;
+    }
     
 }
