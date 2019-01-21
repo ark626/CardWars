@@ -12,7 +12,8 @@ public class CookieMonster extends Enemy{
     private static int SIZE = 32;
     
     public CookieMonster(float x, float y, int level) {
-        super(level);
+        
+        super(32,level, false);
         init(x, y, 0.2f, 0.2f, 1.0f, SIZE, SIZE, game, GameObjectTypes.Enemy,"res/png/test.png");
         setAttackDelay(200);
     }
@@ -56,7 +57,7 @@ public class CookieMonster extends Enemy{
 
     @Override
     public void Attack() {
-        
+
         getTarget().getStats().damage((int)this.getStats().getStrength());
         restartAttackDelay();
 
@@ -64,6 +65,7 @@ public class CookieMonster extends Enemy{
     
     @Override
     public void Death() {
+
         remove();
     }
 }

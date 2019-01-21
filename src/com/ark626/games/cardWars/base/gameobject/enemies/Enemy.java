@@ -14,9 +14,9 @@ public class Enemy extends StatObject{
     private float sigthRange = 128f;
     private Delay attackDelay;
     
-    public Enemy(int level) {
+    public Enemy(int inventorySize,int level,boolean levelable) {
        
-        super(32,0,false);
+        super(inventorySize,level,levelable);
         target = null;
         attackDelay = new Delay(0);
         attackRange = 48f;
@@ -30,13 +30,17 @@ public class Enemy extends StatObject{
             Look();
         }
         else {
-            Chase();
+            
             if(Util.LineSight(this, target)&&(Util.dist(x, y, getTarget().getX(), getTarget().getY()))<= attackRange) {
-
+                if(attackDelay.over()) {
                 Attack();
+                }
+            }
+            else {
+                Chase();
             }
         }
-        if(getStats().getCurrentHealth()<=0) {
+        if(this.getStats().getCurrentHealth()<=0) {
             Death();
         }
     }

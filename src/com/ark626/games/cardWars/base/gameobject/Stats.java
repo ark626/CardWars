@@ -13,12 +13,13 @@ public class Stats {
         
         this.levelable = levelable;
         if(levelable) {
-        this.xp = xp;
+            this.xp = xp;
         }
         else {
             this.xp = -1;
+            this.level = xp;
         }
-        health = this.getCurrentHealth();
+        health = getMaxHealth();
     }
     
 
@@ -59,7 +60,7 @@ public class Stats {
     }
     
     public float getStrength() {
-        return level * 4;
+        return getLevel() * 4;
     }
 
     public void damage(int amount) {
