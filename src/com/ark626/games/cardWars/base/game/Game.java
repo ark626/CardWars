@@ -1,6 +1,7 @@
 package com.ark626.games.cardWars.base.game;
 
 import java.util.ArrayList;
+import java.util.List;
 import org.lwjgl.opengl.Display;
 import com.ark626.games.cardWars.base.gameobject.GameObject;
 import com.ark626.games.cardWars.base.gameobject.Player;
@@ -11,6 +12,7 @@ public class Game {
     
     private ArrayList<GameObject> objects;
     private ArrayList<GameObject> remove;
+    private Level level;
     //private ArrayList<TextureHelper> textures;
     private Player player;
     
@@ -18,7 +20,7 @@ public class Game {
         objects =  new ArrayList<GameObject>();
         remove = new ArrayList<GameObject>();
         //textures = new ArrayList<TextureHelper>();
-        
+        level = new Level();
         player = new Player(Display.getWidth()/2-Player.SIZE/2,
                 Display.getHeight()/2-Player.SIZE/2,this);
         objects.add(player);
@@ -74,7 +76,24 @@ public class Game {
         });
     }
     
+    private void removeObjectFromList(GameObject go, List<Object> from) {
+        from.forEach( gameObject->{        
+            if(go==gameObject) {
+                objects.remove(go);
+            }
+            
+    });
+    }
+    
     public void removeObect(GameObject go) {
+        if(level != null) {
+             if(level.insects!= null){
+                 level.insects.remove(go);
+            }
+             if(level.foods!= null){
+                 level.foods.remove(go);
+            }
+        }
         objects.forEach( gameObject->{
             if(go==gameObject) {
                 objects.remove(go);
@@ -91,6 +110,10 @@ public class Game {
             }
         }
         return false;
+    }
+    
+    public void addGameObject(GameObject go) {
+        this.objects.add(go);
     }
 
 }

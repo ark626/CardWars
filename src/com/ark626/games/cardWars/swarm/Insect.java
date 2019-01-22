@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import com.ark626.games.cardWars.base.engine.drawing.Sprite;
 import com.ark626.games.cardWars.base.game.Delay;
 import com.ark626.games.cardWars.base.game.Time;
+import com.ark626.games.cardWars.base.gameobject.GameObjectTypes;
 import com.ark626.games.cardWars.base.gameobject.StatObject;
 import hyper.Genome;
 
@@ -14,16 +15,18 @@ public class Insect extends StatObject {
     private Genome ki;
     private long started;
     private long killed;
+    private double[] inputs;
 
-    public Insect(int inventorySize, int exp, boolean levelable, Genome ki, float r, float g, float b) {
+    public Insect(float x, float y,int inventorySize, int exp, boolean levelable, Genome ki, float r, float g, float b,int inputAmount) {
         super(inventorySize, exp, levelable);
+        init(x, y, r, g, b, 10, 10, game, GameObjectTypes.Insect,null);
         attackDelay = new Delay(5);
         attackDelay.end();
         healthDrainDelay = new Delay(5);
         healthDrainDelay.start();
         started = Time.getTime();
-        this.setSprite(new Sprite(r, g, b, 32, 32, null));
         this.sprite.init();
+        this.inputs = new double[inputAmount];
         this.ki.generateNetwork();
 
     }
