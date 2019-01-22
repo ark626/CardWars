@@ -1,5 +1,6 @@
 package com.ark626.games.cardWars.base.gameobject.item;
 
+import com.ark626.games.cardWars.base.engine.Main;
 import com.ark626.games.cardWars.base.engine.drawing.Sprite;
 import com.ark626.games.cardWars.base.game.Game;
 import com.ark626.games.cardWars.base.game.Physics;
