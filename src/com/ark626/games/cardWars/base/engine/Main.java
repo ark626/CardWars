@@ -87,16 +87,16 @@ public class Main {
         
         glDisable(GL_DEPTH_TEST);
         
-        glClearColor(255, 255, 255, 0);
+        glClearColor(0 , 0, 0, 0);
     }
     
     private static void initDisplay() {
         
         try {
-            Display.setDisplayMode(new DisplayMode(800,600));
+            Display.setDisplayMode(new DisplayMode(850,650));
             Display.create();
             Keyboard.create();
-            //Display.setVSyncEnabled(true);
+            Display.setVSyncEnabled(true);
         }
         
         catch (LWJGLException ex){

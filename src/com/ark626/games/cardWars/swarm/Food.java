@@ -16,12 +16,15 @@ public class Food extends Item {
 
     public Food(int x, int y) {
         super(null);
-        init(x, y, 1.0f, 0.5f , 0, 32, 32, "The Cube",game,"res/png/test.png");
+        init(x, y, 255f, 255f , 0, 32, 32, "The Cube",game,null);
+        feedHeal = 2000;
+        feedAmount = 1;
         // TODO Auto-generated constructor stub
     }
 
+    @Override
     public void update() {
-        ArrayList<GameObject> gameObjects = Main.sphereCollide(x, y, 20f);
+        ArrayList<GameObject> gameObjects = Main.sphereCollide(x, y, 30f);
         if(!gameObjects.isEmpty()) {
             pickUp(closestOneThatCanEat(gameObjects));
         }
@@ -29,10 +32,13 @@ public class Food extends Item {
     
     public void pickUp(GameObject gameObject) {
         
+        if(gameObject != null) {
         //TODO: Implement feed etc.
         feedAmount -= 1;
+        //System.out.println("Picked Up from "+gameObject);
         if(feedAmount<0) {
         this.remove();
+        }
         }
         
         
@@ -51,7 +57,7 @@ public class Food extends Item {
             }
         }
         if(result != null) {
-            ((Insect)result).feed();
+            ((Insect)result).feed(feedHeal);
         }
         return result;
     }

@@ -34,6 +34,7 @@ public class Sprite {
 
         try {
             // load texture from PNG file
+            if(textureFilePath!= null) {
             texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream(textureFilePath), false);
             
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
@@ -46,6 +47,7 @@ public class Sprite {
             System.out.println(">> Texture width: " + texture.getTextureWidth());
             System.out.println(">> Texture height: " + texture.getTextureHeight());
             System.out.println(">> Texture ID: " + texture.getTextureID());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -61,6 +63,7 @@ public class Sprite {
         float y = 1;
         if (texture != null) {
             texture.bind();
+            
             y = texture.getHeight();//texture.getWidth();
             x = texture.getWidth();
             // glBindTexture(GL_TEXTURE_2D, texture.getTextureID());

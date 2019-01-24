@@ -21,20 +21,21 @@ public class Game {
         remove = new ArrayList<GameObject>();
         //textures = new ArrayList<TextureHelper>();
         level = new Level();
-        player = new Player(Display.getWidth()/2-Player.SIZE/2,
-                Display.getHeight()/2-Player.SIZE/2,this);
-        objects.add(player);
-        objects.add(new Cube(32, 32,this,player));
-        objects.add(new CookieMonster(100, 100, 1));
+        level.init(this);
+//        player = new Player(Display.getWidth()/2-Player.SIZE/2,
+//                Display.getHeight()/2-Player.SIZE/2,this);
+//        objects.add(player);
+//        objects.add(new Cube(32, 32,this,player));
+//        objects.add(new CookieMonster(100, 100, 1));
     }
     
     public void getInput() {
-        player.getInput();
+        //player.getInput();
     }
     
     public void update() {
         
-        
+        level.update();
         objects.forEach( gameObject->{
             if(!gameObject.isRemoved()) {
                 gameObject.update();  
@@ -65,6 +66,7 @@ public class Game {
             if(gameObject.getSprite().getTexture()!= null){
                 gameObject.getSprite().getTexture().release();
             }
+            removeObect(gameObject);
             objects.remove(gameObject);
         });
         remove.clear();
@@ -94,11 +96,11 @@ public class Game {
                  level.foods.remove(go);
             }
         }
-        objects.forEach( gameObject->{
-            if(go==gameObject) {
-                objects.remove(go);
-            }
-        });
+//        objects.forEach( gameObject->{
+//            if(go==gameObject) {
+//                objects.remove(go);
+//            }
+//        });
         
     }
     
